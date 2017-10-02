@@ -176,7 +176,19 @@ class EmirRecipeResult(RecipeResult):
 
 
 class EmirRecipe(BaseRecipe):
+    """Base clase for all EMIR Recipes
 
+
+    Attributes
+    ----------
+    qc : QualityControl, result, QC.GOOD by default
+
+    logger :
+         recipe logger
+
+    datamodel : EmirDataModel
+
+    """
     RecipeResult = EmirRecipeResult
 
     qc = Product(QualityControlProduct, dest='qc', default=QC.GOOD)
