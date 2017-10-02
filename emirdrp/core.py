@@ -21,6 +21,7 @@ import collections
 import logging
 import numpy
 
+from astropy.io import fits
 from numina.flow.node import IdNode
 from numina.flow.processing import BadPixelCorrector
 from numina.core import BaseRecipe, Product, RecipeResult, DataFrame
@@ -200,6 +201,11 @@ class EmirRecipe(BaseRecipe):
     def save_intermediate_img(self, img, name):
         if self.intermediate_results:
             img.writeto(name, clobber=True)
+
+    def save_intermediate_array(self, array, name):
+        """Save intermediate array object as FITS."""
+        if self.intermediate_results:
+            fits.writeto(name, array, clobber=True)
 
     @classmethod
     def types_getter(cls):
